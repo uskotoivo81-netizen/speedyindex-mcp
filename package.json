@@ -1,0 +1,21 @@
+{
+  "name": "speedyindex-mcp",
+  "version": "0.1.0",
+  "description": "MCP server for SpeedyIndex: Google, Bing and Yandex index checks, link indexing, backlink checks and Google Rank Tracker for Claude, Cursor and other AI assistants.",
+  "mcpName": "io.github.uskotoivo81-netizen/speedyindex",
+  "type": "module",
+  "bin": { "speedyindex-mcp": "src/server.js" },
+  "files": ["src", "README.md", "LICENSE"],
+  "engines": { "node": ">=18" },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "speedyindex": "^0.1.0",
+    "zod": "^4.0.0"
+  },
+  "keywords": ["mcp", "model-context-protocol", "speedyindex", "seo", "google index checker", "indexing", "rank tracker", "backlinks", "claude", "cursor"],
+  "homepage": "https://en.speedyindex.com/api.php",
+  "repository": { "type": "git", "url": "git+https://github.com/uskotoivo81-netizen/speedyindex-mcp.git" },
+  "bugs": { "url": "https://github.com/uskotoivo81-netizen/speedyindex-mcp/issues" },
+  "author": "SpeedyIndex",
+  "license": "MIT"
+}

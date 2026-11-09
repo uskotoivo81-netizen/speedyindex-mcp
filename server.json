@@ -1,0 +1,20 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.uskotoivo81-netizen/speedyindex",
+  "title": "SpeedyIndex",
+  "description": "Google, Bing and Yandex index checks, link indexing, backlink checks and Google Rank Tracker.",
+  "repository": { "url": "https://github.com/uskotoivo81-netizen/speedyindex-mcp", "source": "github" },
+  "websiteUrl": "https://en.speedyindex.com/api.php",
+  "version": "0.1.0",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "speedyindex-mcp",
+      "version": "0.1.0",
+      "transport": { "type": "stdio" },
+      "environmentVariables": [
+        { "name": "SPEEDYINDEX_API_KEY", "description": "SpeedyIndex API key", "isRequired": true, "isSecret": true }
+      ]
+    }
+  ]
+}
