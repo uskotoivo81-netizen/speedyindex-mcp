@@ -21,11 +21,14 @@ jobs:
       - name: Smoke test (server lists its tools)
         run: |
           node -e "import('@modelcontextprotocol/sdk/client/index.js').then(async ({Client})=>{const {StdioClientTransport}=await import('@modelcontextprotocol/sdk/client/stdio.js');const c=new Client({name:'ci',version:'1'});await c.connect(new StdioClientTransport({command:'node',args:['src/server.js'],env:{...process.env,SPEEDYINDEX_API_KEY:'ci'}}));const {tools}=await c.listTools();console.log(tools.length,'tools');if(tools.length<10)process.exit(1);await c.close();})"
-      - run: npm publish --provenance --access public
+      - name: Publish to npm (skip if this version is already there)
+        run: |
+          V=$(node -p "require('./package.json').version")
+          if npm view "speedyindex-mcp@$V" version >/dev/null 2>&1; then echo "$V already on npm"; else npm publish --provenance --access public; fi
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Publish to the MCP Registry
         run: |
           curl -sL "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_linux_amd64.tar.gz" | tar xz mcp-publisher
           ./mcp-publisher login github-oidc
-          ./mcp-publisher publish
+          for i in 1 2 3 4 5 6; do ./mcp-publisher publish && exit 0; echo "retry in 30s"; sleep 30; done; exit 1
