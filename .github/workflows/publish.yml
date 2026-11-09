@@ -1,0 +1,31 @@
+name: Publish to npm and MCP Registry
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write   # npm provenance + MCP Registry login via GitHub OIDC
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+      - run: npm install --no-audit --no-fund
+      - name: Smoke test (server lists its tools)
+        run: |
+          node -e "import('@modelcontextprotocol/sdk/client/index.js').then(async ({Client})=>{const {StdioClientTransport}=await import('@modelcontextprotocol/sdk/client/stdio.js');const c=new Client({name:'ci',version:'1'});await c.connect(new StdioClientTransport({command:'node',args:['src/server.js'],env:{...process.env,SPEEDYINDEX_API_KEY:'ci'}}));const {tools}=await c.listTools();console.log(tools.length,'tools');if(tools.length<10)process.exit(1);await c.close();})"
+      - run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Publish to the MCP Registry
+        run: |
+          curl -sL "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_linux_amd64.tar.gz" | tar xz mcp-publisher
+          ./mcp-publisher login github-oidc
+          ./mcp-publisher publish
