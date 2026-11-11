@@ -4,6 +4,8 @@
 
 ## Tools
 
+The npm package (`stdio`) has 14 tools:
+
 | Tool | What it does | Spends balance |
 |---|---|---|
 | `get_balance` | Tokens and credits | no |
@@ -57,6 +59,33 @@ claude mcp add speedyindex -e SPEEDYINDEX_API_KEY=your-key -- npx -y speedyindex
 ## Hosted server
 
 No install needed: add `https://mcp.speedyindex.com/mcp` as a custom connector (streamable HTTP) in Claude or any client that supports remote MCP servers, then sign in with your SpeedyIndex API key. Docs: [mcp.speedyindex.com/docs](https://mcp.speedyindex.com/docs). Privacy: [mcp.speedyindex.com/privacy](https://mcp.speedyindex.com/privacy).
+
+The hosted server has 22 tools: 15 read-only and 7 that change the account (marked destructive, so clients ask before running them). Five of the seven spend the balance.
+
+| Tool | What it does | Spends balance |
+|---|---|---|
+| `get_balance` | Tokens, indexer and checker credits | no |
+| `create_index_check_task` | Index check of up to 10,000 URLs in Google, Yandex or Bing | yes |
+| `create_indexing_task` | Indexing task for Google (pay per indexed, optional drip feed) or Yandex | yes |
+| `submit_single_url` | Send one URL for indexing | yes |
+| `list_tasks` | Indexing or check tasks with progress and indexed counts | no |
+| `get_task_status` | Progress of one task | no |
+| `get_task_report` | Indexed and not indexed URLs of a task | no |
+| `create_backlink_check_task` | Check donor pages for links to your domains | yes |
+| `get_backlink_check_status` | Progress of a backlink check | no |
+| `get_backlink_check_report` | Status, anchor, nofollow, Moz DA and spam score per donor | no |
+| `rank_tracker_list_projects` | Rank Tracker projects | no |
+| `rank_tracker_get_project` | Project settings, regions, check cost and last check | no |
+| `rank_tracker_create_project` | New project for a domain, regions, keywords and competitors | no |
+| `rank_tracker_add_keywords` | Add keywords or update their tags and target URL | no |
+| `rank_tracker_search_locations` | Find a Google location for a region | no |
+| `rank_tracker_get_limits` | Plan limits and usage, token prices, balance | no |
+| `rank_tracker_get_check_cost` | Cost of the next position check | no |
+| `rank_tracker_start_check` | Run a position check | yes |
+| `rank_tracker_get_check` | Progress of a check | no |
+| `rank_tracker_get_positions` | Positions and changes since the previous check | no |
+| `rank_tracker_get_keyword_details` | First results page and AI Overview citation for one keyword | no |
+| `rank_tracker_get_trend` | Check history: visibility, average position, top-3/top-10, AI Overview | no |
 
 ## Listed on
 
