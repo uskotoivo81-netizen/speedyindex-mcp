@@ -4,8 +4,14 @@
   "title": "SpeedyIndex",
   "description": "Google, Bing and Yandex index checks, link indexing, backlink checks and Google Rank Tracker.",
   "repository": { "url": "https://github.com/uskotoivo81-netizen/speedyindex-mcp", "source": "github" },
-  "websiteUrl": "https://en.speedyindex.com/api.php",
-  "version": "0.1.0",
+  "websiteUrl": "https://mcp.speedyindex.com/docs",
+  "version": "0.1.1",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.speedyindex.com/mcp"
+    }
+  ],
   "packages": [
     {
       "registryType": "npm",
