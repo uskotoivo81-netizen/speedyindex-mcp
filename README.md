@@ -54,6 +54,19 @@ claude mcp add speedyindex -e SPEEDYINDEX_API_KEY=your-key -- npx -y speedyindex
 - "For 'pizza delivery', is example.com cited in the AI Overview?"
 - "How much will the next position check of this project cost?"
 
+## Hosted server
+
+No install needed: add `https://mcp.speedyindex.com/mcp` as a custom connector (streamable HTTP) in Claude or any client that supports remote MCP servers, then sign in with your SpeedyIndex API key. Docs: [mcp.speedyindex.com/docs](https://mcp.speedyindex.com/docs). Privacy: [mcp.speedyindex.com/privacy](https://mcp.speedyindex.com/privacy).
+
+## Listed on
+
+- [Official MCP Registry](https://registry.modelcontextprotocol.io/v0/servers?search=io.github.uskotoivo81-netizen/speedyindex) (`io.github.uskotoivo81-netizen/speedyindex`)
+- [Glama](https://glama.ai/mcp/servers/uskotoivo81-netizen/speedyindex-mcp)
+- [mcp.so](https://mcp.so/servers/speedyindex-mcp-server)
+- [npm](https://www.npmjs.com/package/speedyindex-mcp)
+
+The SpeedyIndex REST API behind it: [docs](https://en.speedyindex.com/api.php), [OpenAPI](https://en.speedyindex.com/openapi.yaml), [Postman](https://www.postman.com/speedyindex/speedyindex-api), [RapidAPI](https://rapidapi.com/lindabjorkvin/api/speedyindex2).
+
 ## License
 
 MIT
